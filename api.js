@@ -28,11 +28,6 @@ app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`)
 })
 
-
-app.listen(3000, () => {
-    console.log('server is now listening at port 3000')
-})
-
 client.connect()
 
 app.get("/", (req, res) => {
