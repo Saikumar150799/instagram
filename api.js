@@ -8,7 +8,7 @@ app.use(bodyParser.json())
 
 app.use(function (req, res, next) {
 
-    const corsWhiteList = ['http://localhost:3000', 'https://indian-toursim-project.herokuapp.com']
+    const corsWhiteList = ['http://localhost:3000', 'https://instagram-react-project.herokuapp.com']
     if (corsWhiteList.indexOf(req.headers.origin) !== -1) {
         // Website you wish to allow to connect
         res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
