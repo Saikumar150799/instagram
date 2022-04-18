@@ -6,6 +6,29 @@ const app = express()
 app.use(bodyParser.json())
 
 
+app.use(function (req, res, next) {
+
+    const corsWhiteList = ['http://localhost:3000', 'https://indian-toursim-project.herokuapp.com']
+    if (corsWhiteList.indexOf(req.headers.origin) !== -1) {
+        // Website you wish to allow to connect
+        res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+
+        // Request methods you wish to allow
+        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+
+        // Request headers you wish to allow
+        res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+    }
+    next();
+});
+
+const PORT = process.env.PORT || 3300
+app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}`)
+})
+
+
 app.listen(3000, () => {
     console.log('server is now listening at port 3000')
 })
@@ -73,7 +96,7 @@ app.put('/posts/:post_id', (req, res) => {
 
 // DELETE POST
 app.delete('/posts/:post_id', (req, res) => {
-    
+
     client.query(`DELETE FROM posts WHERE post_id = ${req.params.post_id}`, (err, result) => {
         if (err) {
             console.log(err)
