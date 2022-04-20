@@ -176,6 +176,19 @@ app.post('/posts/:post_id/comments', (req, res) => {
     client.end
 })
 
+// GET ALL COMMENTS
+app.get('/comments',(req,res)=>{
+    client.query('select * from comments',(err,result)=>{
+        if(err){
+            console.log(err)
+            res.send(err.message)
+        }else{
+            res.send(result.rows)
+        }
+    })
+    client.end
+})
+
 // GET A COMMENT
 app.get('/posts/:post_id/comments/', (req, res) => {
     client.query(`select * from comments where post_id=${req.params.post_id}`, (err, result) => {
