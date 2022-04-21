@@ -134,7 +134,7 @@ app.get('/users/:user_id', (req, res) => {
 // POST  USER
 app.post('/users', (req, res) => {
     const user = req.body
-    client.query(`INSERT INTO users (avatar,name,email,password) VALUES('${user.avatar}','${user.name}','${user.email}','${user.password}')`, (err, result) => {
+    client.query(`INSERT INTO users (avatar,name,email,password) VALUES('https://winterhugs.in/wp-content/uploads/2021/06/avatar-3.jpg','${user.name}','${user.email}','${user.password}')`, (err, result) => {
         if (err) {
             console.log(err)
             res.send(err)
@@ -148,7 +148,7 @@ app.post('/users', (req, res) => {
 // UPDATE USER
 app.put('/users/:user_id', (req, res) => {
     let post = req.body
-    client.query(`UPDATE users SET (avatar,name) VALUES('${user.avatar}','${user.name}'`, (err, result) => {
+    client.query(`UPDATE users SET (avatar,name,active) VALUES('${user.avatar}','${user.name},${user.active} where user_id=${req.params.user_id}'`, (err, result) => {
         if (err) {
             console.log(err)
             res.send(err.message)
