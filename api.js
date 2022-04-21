@@ -147,7 +147,7 @@ app.post('/users', (req, res) => {
 
 // UPDATE USER
 app.put('/users/:user_id', (req, res) => {
-    let post = req.body
+    let user = req.body
     client.query(`UPDATE users SET avatar='${user.avatar}',name='${user.name}',active=${user.active} where user_id=${req.params.user_id}`, (err, result) => {
         if (err) {
             console.log(err)
