@@ -160,6 +160,19 @@ app.put('/users/:user_id', (req, res) => {
 })
 
 
+app.get('/users/active/:active',(req,res)=>{
+    client.query(`select * from users where active=${req.params.active},`,(err,result)=>{
+        if(err){
+            console.log(err)
+            res.send(err)
+        }else{
+            res.send(result.rows)
+        }
+    })
+    client.end
+})
+
+
 // ********************************|USERS COMPLETED|*****************************//
 
 // POST COMMENT
